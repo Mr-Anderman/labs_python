@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Химчистка «Бриллиант» — вход</title>
+    <link rel="stylesheet" href="{% static 'css/orders.css' %}">
+</head>
+<body class="article">
+    {% include 'header.html' with all_link=True %}
+    <div class="content narrow">
+        <h1>Вход для сотрудников</h1>
+        <form method="POST" class="contract-form">{% csrf_token %}
+            <input type="text" name="username" placeholder="Логин" value="{{ form.username }}">
+            <input type="password" name="password" placeholder="Пароль">
+            <input type="submit" value="Войти">
+        </form>
+        <p class="errors">{{ form.errors }}</p>
+        <p>Нет аккаунта? <a href="{% url 'register' %}">Зарегистрируйтесь</a>.</p>
+    </div>
+</body>
+</html>

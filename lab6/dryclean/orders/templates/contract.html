@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Договор №{{ contract.number }}</title>
+    <link rel="stylesheet" href="{% static 'css/orders.css' %}">
+</head>
+<body class="article">
+    {% include 'header.html' with all_link=True %}
+    <div class="content">
+        <h1>Договор №{{ contract.number }}</h1>
+        <div class="article-info">
+            <div class="article-author">Клиент: {{ contract.client }}, тел. {{ contract.client.phone }}</div>
+            <div class="article-created-date">Принято: {{ contract.date_received }}</div>
+        </div>
+        <p>Филиал: {{ contract.branch }}. Приёмщик: {{ contract.receiver.username }}.
+           {% if contract.has_discount %}Постоянный клиент — скидка 3 %.{% endif %}</p>
+        <p class="article-text">{{ contract.comment }}</p>
+        <table>
+            <tr><th>Вещь</th><th>Услуга</th><th>Сложность</th><th>Срочно</th><th>Возврат</th><th>Цена, руб.</th></tr>
+            {% for item in contract.item_set.all %}
+            <tr>
+                <td>{{ item.description }}</td>
+                <td>{{ item.service.name }}</td>
+                <td>{{ item.get_complexity_display }}</td>
+                <td>{{ item.urgent|yesno:"да,нет" }}</td>
+                <td>{{ item.date_returned|default:"в работе" }}</td>
+                <td>{{ item.price }}</td>
+            </tr>
+            {% endfor %}
+            <tr><th colspan="5">Итого</th><th>{{ contract.total }}</th></tr>
+        </table>
+    </div>
+</body>
+</html>

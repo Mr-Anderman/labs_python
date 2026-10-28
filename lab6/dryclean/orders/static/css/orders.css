@@ -1,0 +1,121 @@
+/* общие стили страницы */
+body {
+    background: #1abc9c;
+    font-family: Tahoma, Arial, sans-serif;
+    color: #ffffff;
+}
+a {
+    color: #ffffff;
+}
+/* логотип по центру (страница архива) */
+.header img {
+    display: block;
+    width: 318px;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* контент по центру, ширина 960px */
+.archive .archive,
+.article .header,
+.article .content {
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* заголовки-ссылки белые */
+.post-title a {
+    color: #ffffff;
+}
+/* автор и дата на одной строке */
+.article-author {
+    width: 50%;
+    float: left;
+    font-weight: bold;
+    font-size: 14px;
+}
+.article-created-date {
+    text-align: right;
+    font-style: italic;
+    font-size: 14px;
+}
+.article-text {
+    clear: both;
+}
+/* на странице договора строка «Клиент…, тел.» длиннее — даём ей 70 % ширины */
+.article .article-author {
+    width: 70%;
+}
+/* шапка: ссылки в правом верхнем углу (как «Все договоры») */
+.header {
+    position: relative;
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    min-height: 60px;
+}
+.article .header img {
+    margin: 0;                  /* на внутренних страницах логотип слева */
+}
+.auth-links {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    line-height: 60px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.auth-links a {
+    margin-left: 15px;
+}
+.article h1 {
+    font-size: 32px;
+}
+.article table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.article th, .article td {
+    border: 1px solid #ffffff;
+    padding: 5px;
+    text-align: left;
+}
+/* формы: приём вещи, регистрация, вход */
+.contract-form input[type="text"],
+.contract-form input[type="email"],
+.contract-form input[type="password"],
+.contract-form select,
+.contract-form textarea {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: none;
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 16px;
+}
+.contract-form textarea {
+    height: 120px;
+}
+.contract-form label {
+    display: block;
+    margin-bottom: 10px;
+}
+.contract-form input[type="submit"] {
+    padding: 10px 30px;
+    background: #16a085;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+}
+.errors {
+    color: #c0392b;
+    font-weight: bold;
+}
+/* узкая форма входа/регистрации */
+.article .content.narrow {
+    width: 400px;
+}

@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Химчистка «Бриллиант» — приём вещи</title>
+    <link rel="stylesheet" href="{% static 'css/orders.css' %}">
+</head>
+<body class="article">
+    {% include 'header.html' with all_link=True %}
+    <div class="content">
+        <h1>Приём вещи в чистку</h1>
+        <form method="POST" class="contract-form">{% csrf_token %}
+            <input type="text" name="number" placeholder="Номер договора" value="{{ form.number }}">
+
+            <select name="client">
+                <option value="">— клиент —</option>
+                {% for c in clients %}
+                <option value="{{ c.id }}" {% if form.client == c.id|stringformat:"s" %}selected{% endif %}>{{ c }}, {{ c.phone }}</option>
+                {% endfor %}
+            </select>
+
+            <select name="branch">
+                <option value="">— филиал —</option>
+                {% for b in branches %}
+                <option value="{{ b.id }}" {% if form.branch == b.id|stringformat:"s" %}selected{% endif %}>{{ b }}</option>
+                {% endfor %}
+            </select>
+
+            <select name="service">
+                <option value="">— вид услуги —</option>
+                {% for s in services %}
+                <option value="{{ s.id }}" {% if form.service == s.id|stringformat:"s" %}selected{% endif %}>{{ s }}</option>
+                {% endfor %}
+            </select>
+
+            <input type="text" name="description" placeholder="Вещь (например, пальто серое)" value="{{ form.description }}">
+
+            <select name="complexity">
+                {% for value, label in complexity %}
+                <option value="{{ value }}" {% if form.complexity == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+
+            <label><input type="checkbox" name="urgent" {% if form.urgent %}checked{% endif %}> Срочно (+50 %)</label>
+
+            <textarea name="comment" placeholder="Описание работ">{{ form.comment }}</textarea>
+
+            <input type="submit" value="Сохранить">
+        </form>
+        <p class="errors">{{ form.errors }}</p>
+    </div>
+</body>
+</html>
