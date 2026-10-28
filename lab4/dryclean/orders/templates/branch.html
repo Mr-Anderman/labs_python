@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Филиал «{{ branch.name }}»</title>
+    <link rel="stylesheet" href="{% static 'css/orders.css' %}">
+</head>
+<body class="article">
+    <div class="header">
+        <img src="{% static 'img/logo.png' %}" alt="Химчистка «Бриллиант»">
+        <a class="all-posts" href="{% url 'archive' %}">Все договоры</a>
+    </div>
+    <div class="content">
+        <h1>Филиал «{{ branch.name }}», {{ branch.address }}</h1>
+        <table>
+            <tr><th>Договоров</th><th>Вещей принято</th><th>Вещей выдано</th><th>Выручка, руб.</th></tr>
+            <tr><td>{{ stats.contracts }}</td><td>{{ stats.items }}</td><td>{{ stats.returned }}</td><td>{{ stats.revenue }}</td></tr>
+        </table>
+        <ul>
+            {% for contract in contracts %}
+            <li><a href="{% url 'get_contract' contract_id=contract.id %}">№{{ contract.number }}</a> — {{ contract.client }}, {{ contract.total }} руб.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
